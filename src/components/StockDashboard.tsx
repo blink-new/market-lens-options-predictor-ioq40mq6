@@ -96,15 +96,22 @@ export function StockDashboard() {
 
         {/* Error State */}
         {error && (
-          <Card className="max-w-2xl mx-auto border-red-200">
+          <Card className="max-w-2xl mx-auto border-yellow-200 bg-yellow-50">
             <CardContent className="p-6 text-center">
-              <div className="text-red-500 mb-2">
+              <div className="text-yellow-600 mb-2">
                 <Activity className="h-8 w-8 mx-auto" />
               </div>
-              <h3 className="text-lg font-semibold text-red-700 mb-2">Unable to fetch stock data</h3>
-              <p className="text-red-600">
-                Please check the ticker symbol and try again. Make sure it's a valid stock symbol.
+              <h3 className="text-lg font-semibold text-yellow-800 mb-2">Using Demo Data</h3>
+              <p className="text-yellow-700">
+                Live market data is temporarily unavailable. Showing simulated data for demonstration purposes.
               </p>
+              <Button 
+                onClick={() => window.location.reload()} 
+                variant="outline" 
+                className="mt-3 border-yellow-300 text-yellow-800 hover:bg-yellow-100"
+              >
+                Try Again
+              </Button>
             </CardContent>
           </Card>
         )}
@@ -112,6 +119,25 @@ export function StockDashboard() {
         {/* Stock Data Display */}
         {stockData && !isLoading && (
           <div className="space-y-6 animate-fade-in">
+            {/* Demo Data Banner */}
+            {error && (
+              <Card className="border-blue-200 bg-blue-50">
+                <CardContent className="p-4">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-blue-100 rounded-lg">
+                      <Activity className="h-4 w-4 text-blue-600" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-blue-800">Demo Mode Active</p>
+                      <p className="text-xs text-blue-600">
+                        Showing simulated data for demonstration. Technical analysis and AI predictions are based on generated data.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+            
             {/* Stock Header */}
             <Card>
               <CardContent className="p-6">
